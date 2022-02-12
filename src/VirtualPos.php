@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 abstract class VirtualPos {
     protected static $methods, $paymentMethod;
 
-    public static function genarateCardForm(){
-
+    public static function genarateCardForm($data){
         $new        =  new self::$paymentMethod->file;
 
-        $html           = $new->genarePaymentForm();
+        $html           = $new->genarePaymentForm($data);
 
         return $html;
     }
