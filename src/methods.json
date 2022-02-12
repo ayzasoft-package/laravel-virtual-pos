@@ -2,19 +2,20 @@
     "iyzico" : {
         "title"   : "İyzico",
         "slug"    : "iyzico",
-        "file"    : "\\Ibrahimcadirci\\VirtualPos\\Methods\\Iyzico",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\Iyzico",
         "is_active"    : 1
     },
     "ipara" : {
         "title"   : "İPara",
         "slug"    : "ipara",
-        "file"    : "\\Ibrahimcadirci\\VirtualPos\\Methods\\Ipara",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\Ipara",
         "is_active"    : 1
     },
     "kuveytturk" : {
         "title"   : "Kuveyt Türk Bank",
         "slug"    : "kuveytturk",
-        "file"    : "\\Ibrahimcadirci\\VirtualPos\\Methods\\KuveytTurk",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\KuveytTurk",
         "is_active"    : 1
     }
 }
+
