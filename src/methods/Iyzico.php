@@ -4,6 +4,7 @@ namespace Ibrahimcadirci\VirtualPos\methods;
 use Ibrahimcadirci\VirtualPos\VirtualPos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\One\User;
 
 class Iyzico extends VirtualPos implements MethodInterface{
@@ -22,11 +23,11 @@ class Iyzico extends VirtualPos implements MethodInterface{
     public function genarePaymentForm($data){
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
-        $request->setConversationId("123456789");
+        $request->setConversationId($data['orderId'].'-'.$data['orderPaymentId']);
         $request->setPrice($data['totalPrice']);
         $request->setPaidPrice($data['totalPrice']);
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
-        $request->setBasketId("BI101");
+        $request->setBasketId(reset($data['cart'])['basketId'].'-'.$data['orderId'].'-'.$data['orderPaymentId']);
         $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
         $request->setCallbackUrl(route('virtualpos.callback.iyzico'));
         $request->setEnabledInstallments(array(2, 3, 6, 9));
@@ -38,8 +39,8 @@ class Iyzico extends VirtualPos implements MethodInterface{
         $buyer->setGsmNumber($data['buyer']['phone']);
         $buyer->setEmail($data['buyer']['email']);
         $buyer->setIdentityNumber($data['buyer']['identity']);
-        $buyer->setLastLoginDate("2015-10-05 12:43:35");
-        $buyer->setRegistrationDate("2013-04-21 15:12:09");
+        $buyer->setLastLoginDate(" ");
+        $buyer->setRegistrationDate(" ");
         $buyer->setRegistrationAddress($data['buyer']['address']);
         $buyer->setIp($data['buyer']['ip']);
         $buyer->setCity($data['buyer']['city']);
@@ -70,13 +71,14 @@ class Iyzico extends VirtualPos implements MethodInterface{
             $firstBasketItem->setId($basketItem['id']);
             $firstBasketItem->setName($basketItem['name']);
             $firstBasketItem->setCategory1($basketItem['category']);
-            //$firstBasketItem->setCategory2("Accessories");
             $firstBasketItem->setItemType(\Iyzipay\Model\BasketItemType::PHYSICAL);
             $firstBasketItem->setPrice($basketItem['price']);
             $basketItems[] = $firstBasketItem;
         }
         $request->setBasketItems($basketItems);
+
         $checkoutFormInitialize = \Iyzipay\Model\CheckoutFormInitialize::create($request, $this->options);
+
         return '<div id="iyzipay-checkout-form" class="responsive"></div>'  . $checkoutFormInitialize->getcheckoutFormContent();
     }
 
@@ -87,6 +89,7 @@ class Iyzico extends VirtualPos implements MethodInterface{
         $data->setLocale(\Iyzipay\Model\Locale::TR);
         $data->setConversationId("123456789");
         $data->setToken($token);
+
 
         $checkoutForm = \Iyzipay\Model\CheckoutForm::retrieve($data, $this->options);
         $resultStatus           = true;
