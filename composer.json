@@ -1,0 +1,32 @@
+{
+    "name": "ayzasoft/laravel-virtual-pos",
+    "autoload": {
+        "psr-4": {
+            "Ibrahimcadirci\\VirtualPos\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ibrahimcadirci\\VirtualPos\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ayzasoft",
+            "email": "ayzasoftware@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3|^8",
+        "illuminate/http": "5.8.*|^6|^7|^8",
+        "illuminate/view": "5.8.*|^6|^7|^8",
+        "iyzico/iyzipay-php": "^2.0"
+        },
+    "extra": {
+        "laravel" : {
+            "providers" : [
+                "Ayzasoft\\VirtualPos\\VirtualPosServiceProvider"
+            ]
+        }
+    }
+}

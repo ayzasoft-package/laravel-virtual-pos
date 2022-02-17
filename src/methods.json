@@ -1,0 +1,21 @@
+{
+    "iyzico" : {
+        "title"   : "İyzico",
+        "slug"    : "iyzico",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\Iyzico",
+        "is_active"    : 1
+    },
+    "ipara" : {
+        "title"   : "İPara",
+        "slug"    : "ipara",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\Ipara",
+        "is_active"    : 1
+    },
+    "kuveytturk" : {
+        "title"   : "Kuveyt Türk Bank",
+        "slug"    : "kuveytturk",
+        "file"    : "\\Ibrahimcadirci\\VirtualPos\\methods\\KuveytTurk",
+        "is_active"    : 1
+    }
+}
+
